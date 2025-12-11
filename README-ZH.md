@@ -30,9 +30,7 @@ RustDesk 期待各位的贡献. 如何参与开发? 详情请看 [CONTRIBUTING-Z
 
 [**NIGHTLY BUILD**](https://github.com/rustdesk/rustdesk/releases/tag/nightly)
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-    alt="Get it on F-Droid"
-    height="80">](https://f-droid.org/en/packages/com.carriez.flutter_hbb)
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/en/packages/com.carriez.flutter_hbb)
 
 ## 依赖
 
@@ -129,9 +127,12 @@ VCPKG_ROOT=$HOME/vcpkg cargo build -j $(nproc) --release
 克隆版本库并构建 Docker 容器:
 
 ```sh
-git clone https://github.com/rustdesk/rustdesk # 克隆Github存储库
+git clone https://gitee.com/imocence/rustdesk.git # 克隆Github存储库
 cd rustdesk # 进入文件夹
 docker build -t "rustdesk-builder" . # 构建容器
+
+#生成命令
+$ docker build -f Dockerfile -t imocence/rustdesk-debian:v1.4.4 .
 ```
 
 请注意：
@@ -160,8 +161,20 @@ docker build -t "rustdesk-builder" . # 构建容器
    3. Dockerfile 中加入代理的 env
 
       ```
-      在User root后插入两行
-
+      # 系统级配置
+      export http_proxy="http://192.168.28.128:1081" && export https_proxy="http://192.168.28.128:1081"
+      unset http_proxy https_proxy # 取消代理
+      
+      # git配置
+      git config --global http.postBuffer 1048576000
+      git config --global http.proxy "http://192.168.28.128:1081"
+      git config --global https.proxy "http://192.168.28.128:1081"
+      # 取消代理
+      git config --global --unset http.proxy
+      git config --global --unset https.proxy
+      git config --global -l
+      
+      # 在User root后插入两行
       ENV http_proxy=http://host:port
       ENV https_proxy=http://host:port
       ```
