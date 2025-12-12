@@ -132,7 +132,7 @@ cd rustdesk # 进入文件夹
 docker build -t "rustdesk-builder" . # 构建容器
 
 #生成命令
-$ docker build -f Dockerfile -t imocence/rustdesk-debian:v1.4.4 .
+$ docker build -f Dockerfile_cn -t imocence/rustdesk-debian:v1.4.4 .
 ```
 
 请注意：
