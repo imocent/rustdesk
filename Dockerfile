@@ -28,7 +28,7 @@ RUN groupadd -r user && useradd -r -g user user --home /home/user && \
 WORKDIR /home/user
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh && chmod 777 /entrypoint.sh \
-   && curl -LO libsciter-gtk.so "https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so"
+   && wget -t 3 -O libsciter-gtk.so "https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so"
 
 USER user
 RUN wget --tries=3 --https-only --secure-protocol=TLSv1_2 -O rustup.sh https://sh.rustup.rs && chmod +x rustup.sh && ./rustup.sh -y
