@@ -27,6 +27,7 @@ RUN groupadd -r user && useradd -r -g user user --home /home/user && \
 
 WORKDIR /home/user
 COPY ./entrypoint.sh /
+COPY ./.cargo/config.toml /home/user/rustdesk/
 RUN chmod +x /entrypoint.sh && chmod 777 /entrypoint.sh \
    && wget -t 3 -O libsciter-gtk.so "https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so"
 
