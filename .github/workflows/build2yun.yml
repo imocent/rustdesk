@@ -1,10 +1,6 @@
-name: Docker Image CI/CD
+name: build2yun
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   workflow_dispatch:
     inputs:
       docker_username:
