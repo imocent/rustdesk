@@ -1,10 +1,5 @@
 [source.crates-io]
 registry = "https://github.com/rust-lang/crates.io-index"
-replace-with = 'ustc'
-
-[source.ustc]
-registry = "https://mirrors.ustc.edu.cn/crates.io-index"
-
 
 [target.x86_64-pc-windows-msvc]
 rustflags = ["-Ctarget-feature=+crt-static"]
