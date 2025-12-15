@@ -166,7 +166,13 @@ $ docker build -f Dockerfile_cn -t imocence/rustdesk-debian:v1.4.4 .
       unset http_proxy https_proxy # 取消代理
       
       # git配置
-      git config --global http.postBuffer 1048576000
+      git config --global advice.detachedHead false && git config --global http.postBuffer 1048576000 \
+      && git config --global http.lowSpeedLimit 0 && git config --global http.lowSpeedTime 99999 \
+      && git config --global http.maxFileSize 524288000 && git config --global core.compression 9 \
+      && git config --global core.looseCompression 9 && git config --global core.compressionAlgorithm zlib \
+      && git config --global url."https://ghfast.top/https://github.com".insteadOf https://github.com \
+      && git config --global url."https://ghfast.top/https://github.com/webmproject/libwebm".insteadOf https://chromium.googlesource.com/webm/libwebm \
+      && git config --global url."https://gitclone.com/".insteadOf https://googlesource.com/
       git config --global http.proxy "http://192.168.28.128:1081"
       git config --global https.proxy "http://192.168.28.128:1081"
       # 取消代理
@@ -190,7 +196,8 @@ $ docker build -f Dockerfile_cn -t imocence/rustdesk-debian:v1.4.4 .
 然后, 每次需要构建应用程序时, 运行以下命令:
 
 ```sh
-docker run --rm -it -v $PWD:/home/user/rustdesk -v rustdesk-git-cache:/home/user/.cargo/git -v rustdesk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" rustdesk-builder
+docker run --rm -it -v /home/rustdesk:/home/user/rustdesk -e HTTP_PROXY="socks5://192.168.28.128:1080" \
+-e HTTPS_PROXY="socks5://192.168.28.128:1080" -e PUID="$(id -u)" -e PGID="$(id -g)" registry.cn-hongkong.aliyuncs.com/winser/rustdesk:latest
 ```
 
 请注意:  
