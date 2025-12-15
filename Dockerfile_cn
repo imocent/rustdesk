@@ -42,7 +42,8 @@ RUN git config --global url."$GITHUB_RUI/".insteadOf "https://github.com/" && \
     /vcpkg/bootstrap-vcpkg.sh -disableMetrics && /vcpkg/vcpkg --disable-metrics install libvpx libyuv opus aom
 
 RUN groupadd -r user && useradd -r -g user user --home /home/user && mkdir -p /home/user/rustdesk && chown -R user: /home/user && \
-    echo "user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/user \
+    echo "user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/user
+
 COPY ./.cargo/config.toml /home/user/rustdesk/
 
 WORKDIR /home/user

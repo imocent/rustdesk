@@ -21,13 +21,13 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.30.6/cmake-3.30.6
 RUN git clone --branch 2023.04.15 --depth=1 https://github.com/microsoft/vcpkg && \
     /vcpkg/bootstrap-vcpkg.sh -disableMetrics && /vcpkg/vcpkg --disable-metrics install libvpx libyuv opus aom
 
-RUN groupadd -r user && useradd -r -g user user --home /home/user && \
-    mkdir -p /home/user/rustdesk && chown -R user: /home/user && \
+RUN groupadd -r user && useradd -r -g user user --home /home/user && mkdir -p /home/user/rustdesk && chown -R user: /home/user && \
     echo "user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/user
 
 WORKDIR /home/user
+
 COPY ./entrypoint.sh /
-COPY ./.cargo/config.toml /home/user/rustdesk/
+
 RUN chmod +x /entrypoint.sh && chmod 777 /entrypoint.sh && ls /home/user/rustdesk/ \
    && wget -t 3 -O libsciter-gtk.so "https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so"
 
@@ -37,4 +37,4 @@ RUN wget --tries=3 --https-only --secure-protocol=TLSv1_2 -O rustup.sh https://s
 USER root
 ENV HOME=/home/user
 
-#ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
