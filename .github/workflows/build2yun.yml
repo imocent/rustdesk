@@ -1,5 +1,4 @@
 name: build2yun
-
 on:
   workflow_dispatch:
     inputs:
@@ -57,5 +56,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: rustdesk-files.zip
-        path: target/
+        path: ./target/*
         retention-days: 7
