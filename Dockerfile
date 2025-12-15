@@ -4,7 +4,7 @@ WORKDIR /
 ARG DEBIAN_FRONTEND=noninteractive
 ENV VCPKG_FORCE_SYSTEM_BINARIES=1
 
-RUN apt update -y && apt install -y --no-install-recommends ca-certificates clang curl g++ gcc git libasound2-dev \
+RUN apt update -y && apt install -y --no-install-recommends bash ca-certificates clang curl g++ gcc git libasound2-dev \
     libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgtk-3-dev libpam0g-dev libpulse-dev libssl-dev  \
     libxcb-randr0-dev libxcb-shape0-dev libxcb-xfixes0-dev libxdo-dev libxfixes-dev make nasm ninja-build sudo tar unzip wget yasm zip && \
     git config --global advice.detachedHead false && \
