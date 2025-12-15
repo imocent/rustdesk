@@ -52,7 +52,7 @@ jobs:
         docker tag $REGISTRY/$IMAGE_NAME:$TAG $REGISTRY/$IMAGE_NAME:latest
         docker push $REGISTRY/$IMAGE_NAME:latest
         docker run --rm -v $PWD:/home/user/rustdesk -v rustdesk-git-cache:/home/user/.cargo/git \
-        -v rustdesk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" $REGISTRY/$IMAGE_NAME:latest
+        -v rustdesk-registry-cache:/home/user/.cargo/registry -e PUID="$(id -u)" -e PGID="$(id -g)" $REGISTRY/$IMAGE_NAME:latest --release
     - name: upload-files
       uses: actions/upload-artifact@v4
       with:
