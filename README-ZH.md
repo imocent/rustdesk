@@ -182,7 +182,7 @@ $ docker build -f Dockerfile_cn -t imocence/rustdesk-debian:v1.4.4 .
    4. docker build 命令后面加上 proxy 参数
 
       ```
-      docker build -t "rustdesk-builder" . --build-arg http_proxy=http://host:port --build-arg https_proxy=http://host:port
+      docker build -t "rustdesk-builder" . --build-arg http_proxy=http://127.0.0.1:1080 --build-arg https_proxy=http://127.0.0.1:1080
       ```
 
 ### 构建 RustDesk 程序

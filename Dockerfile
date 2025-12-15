@@ -37,4 +37,4 @@ RUN wget --tries=3 --https-only --secure-protocol=TLSv1_2 -O rustup.sh https://s
 USER root
 ENV HOME=/home/user
 
-ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/entrypoint.sh"]
