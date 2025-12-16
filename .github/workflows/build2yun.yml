@@ -52,9 +52,10 @@ jobs:
         docker push $REGISTRY/$IMAGE_NAME:latest
         echo $PWD
         docker run --rm -v $PWD:/home/user/rustdesk -e PUID="$(id -u)" -e PGID="$(id -g)" $REGISTRY/$IMAGE_NAME:latest --release
+        tar zxcf rustdesk-release.tar.gz ./target/release
     - name: upload-files
       uses: actions/upload-artifact@v4
       with:
-        name: rustdesk-files.zip
-        path: ./target/*
+        name: rustdesk-files
+        path: rustdesk-release.tar.gz
         retention-days: 7
